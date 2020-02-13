@@ -1,0 +1,171 @@
+// ＊＊＊＊＊＊＊＊＊＊
+// 共通
+// ＊＊＊＊＊＊＊＊＊＊
+* {
+    margin:0 ;
+    padding: 0;
+    font-family: Helvetica;
+  }
+.fontsize10 {
+  font-size: 10px;
+}
+// ＊＊＊＊＊＊＊＊＊＊
+// span
+// ＊＊＊＊＊＊＊＊＊＊
+.backwhite {
+  background-color: white;
+}
+// ＊＊＊＊＊＊＊＊＊＊
+// common.blade
+// ＊＊＊＊＊＊＊＊＊＊
+.top_bar {
+  min-width: 960px;
+  background: #005493;
+  padding: 30px 0 30px 0;
+  color: white;
+  font-family: Helvetica;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  .top_bar_brand {
+    width: 40%;
+    font-size: 30px;
+    padding-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .top_bar_user {
+    width: 10%;
+    padding: 10px 10px 0 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.full-page {
+  width: 100vw;
+  height: 100vh;
+  background: #0071BC;
+  position: relative;
+}
+// ＊＊＊＊＊＊＊＊＊＊
+// main_blade
+// ＊＊＊＊＊＊＊＊＊＊
+.main-menu__contents-wrapper {
+  max-width: 1280px;
+  min-width: 960px;
+  margin: 0 auto;
+  .main-menu__btns {
+    display: flex;
+    justify-content: space-around;
+    color:black;
+    margin-top: calc(50% - (109px + 159px + 79.5px));
+    p {
+      margin: 0;
+      text-align: center;
+      font-size: 50px;
+      font-weight: 700;
+    }
+    .main-menu__shift-create-btn {
+      background-color:white;
+      width: 30%;
+      padding: 30px 0;
+      border-radius: 10px;
+    }
+    .main-menu__shift-edit-btn {
+      background-color:white;
+      width: 30%;
+      padding: 30px 0;
+      border-radius: 10px;
+    }
+    .main-menu__shift-reference-btn {
+      background-color:white;
+      width: 30%;
+      padding: 30px 0;
+      border-radius: 10px;
+    }
+  }
+}
+.main-menu__system-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+// ＊＊＊＊＊＊＊＊＊＊
+// saystem_setting
+// ＊＊＊＊＊＊＊＊＊＊
+.saystem_setting__contents-wrapper {
+  max-width: 1280px;
+  min-width: 960px;
+  margin: 0 auto;
+  .saystem_setting__btns {
+    display: flex;
+    justify-content: space-around;
+    color:black;
+    margin-top: calc(50% - (109px + 159px + 79.5px));
+    p {
+      margin: 0;
+      text-align: center;
+      font-size: 50px;
+      font-weight: 700;
+    }
+    .saystem_setting__company-setting-btn {
+      background-color:white;
+      width: 30%;
+      padding: 30px 0;
+      border-radius: 10px;
+    }
+    .saystem_setting__employee-setting-btn {
+      background-color:white;
+      width: 30%;
+      padding: 30px 0;
+      border-radius: 10px;
+    }
+  }
+}
+.return {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+}
+// ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+// saystem_setting__company_setting
+// ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+.saystem_setting__company_setting__contents_wrapper_wrapper {
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  .saystem_setting__company_setting__contents_wrapper {
+    max-width: 1280px;
+    min-width: 960px;
+    margin: 0 auto;
+    padding: 50px 0;
+    color: #26484D;
+    font-size: 30px;
+    background-color:silver;
+    .saystem_setting__company_setting__h1_title {
+      border-bottom: 1px solid #707070;
+      color: #0F8E9F;
+      font-size: 40px;
+    }
+    .saystem_setting__company_setting__company_name {
+      border-bottom: 1px solid #707070;
+    }
+    .saystem_setting__company_setting__shift_pattern {
+      border-bottom: 1px solid #707070;
+    }
+    .saystem_setting__company_setting__shift_pattern__inputs {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+    }
+    .saystem_setting__company_setting__shift_pattern__oneday_maximum_continuous_shift {
+      border-bottom: 1px solid #707070;
+      padding: 10px 0;
+    }
+  }
+}
