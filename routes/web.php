@@ -11,6 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/company_setting', 'AdminController@company_setting');
+Route::get('/employee_setting', 'AdminController@employee_setting');
+Route::post('/employee_setting', 'AdminController@employee_setting_send');
+Route::get('/eachday_calendar', 'Calendar_formController@getCalendarDates');
+Route::get('/main_menu', 'AdminController@main_menu');
+Route::get('/saystem_setting', 'AdminController@saystem_setting');
+Route::get('/saystem_setting__company_setting', 'AdminController@saystem_setting__company_setting');
+Route::post('/saystem_setting__company_setting', 'AdminController@saystem_setting__company_setting__post');
+Route::get('/saystem_setting__employee_setting', 'AdminController@saystem_setting__employee_setting');
+Route::get('/', 'TopController@top');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
