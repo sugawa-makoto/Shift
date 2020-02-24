@@ -1,161 +1,193 @@
+@charset "UTF-8";
+
 * {
   margin: 0;
   padding: 0;
   font-family: Helvetica;
 }
 
-.fontsize10 {
-  font-size: 10px;
+html {
+  /* ルートのフォントサイズを10pxに設定しておく */
+  font-size: 62.5%;
 }
 
-.backwhite {
-  background-color: white;
+body {
+  /* ルートのフォントサイズを1.6em（16pxと同等のサイズ）に設定 */
+  font-size: 1.6em;
+}
+
+div h2 {
+  /* 68px */
+  font-size: 6.8rem;
+}
+
+div a {
+  /* 38px */
+  font-size: 3.8rem;
 }
 
 .top_bar {
-  min-width: 960px;
+  min-width: 100rem;
   background: #005493;
-  padding: 30px 0 30px 0;
+  padding: 3rem 0 3rem 0;
   color: white;
   font-family: Helvetica;
   font-weight: bold;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .top_bar .top_bar_brand {
-  width: 40%;
-  font-size: 30px;
-  padding-left: 5%;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-          justify-content: flex-start;
+  font-size: 3rem;
+  float: left;
 }
 
 .top_bar .top_bar_user {
-  width: 10%;
-  padding: 10px 10px 0 0;
-  text-align: center;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
+  float: right;
+  margin-top: 0.8rem;
 }
 
-.full-page {
-  width: 100vw;
-  height: 100vh;
-  background: #0071BC;
-  position: relative;
+.top_bar .top_bar_user .top_bar_user_name {
+  text-align: center;
+}
+
+.top_bar::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 .main-menu__contents-wrapper {
-  max-width: 1280px;
-  min-width: 960px;
-  margin: 0 auto;
+  min-width: 100rem;
+  height: calc(100vh - 108px);
+  background-color: black;
+  position: relative;
 }
 
 .main-menu__contents-wrapper .main-menu__btns {
+  color: black;
+  width: 100%;
   display: -webkit-box;
   display: flex;
   justify-content: space-around;
-  color: black;
-  margin-top: calc(50% - (109px + 159px + 79.5px));
+  position: absolute;
+  top: calc(50% - (124px/2));
 }
 
 .main-menu__contents-wrapper .main-menu__btns p {
   margin: 0;
   text-align: center;
-  font-size: 50px;
+  font-size: 4rem;
   font-weight: 700;
 }
 
 .main-menu__contents-wrapper .main-menu__btns .main-menu__shift-create-btn {
   background-color: white;
   width: 30%;
-  padding: 30px 0;
-  border-radius: 10px;
+  padding: 3rem 0;
+  border-radius: 1rem;
 }
 
 .main-menu__contents-wrapper .main-menu__btns .main-menu__shift-edit-btn {
   background-color: white;
   width: 30%;
-  padding: 30px 0;
-  border-radius: 10px;
+  padding: 3rem 0;
+  border-radius: 1rem;
 }
 
 .main-menu__contents-wrapper .main-menu__btns .main-menu__shift-reference-btn {
   background-color: white;
   width: 30%;
-  padding: 30px 0;
-  border-radius: 10px;
+  padding: 3rem 0;
+  border-radius: 1rem;
 }
 
-.main-menu__system-btn {
+.main-menu__contents-wrapper .main-menu__system-btn {
+  width: 100%;
+  text-align: right;
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 0;
+}
+
+.main-menu__contents-wrapper .main-menu__system-btn img {
+  width: 10%;
 }
 
 .saystem_setting__contents-wrapper {
-  max-width: 1280px;
-  min-width: 960px;
-  margin: 0 auto;
+  min-width: 100rem;
+  height: calc(100vh - 108px);
+  background-color: black;
+  position: relative;
 }
 
 .saystem_setting__contents-wrapper .saystem_setting__btns {
+  width: 100%;
   display: -webkit-box;
   display: flex;
   justify-content: space-around;
-  color: black;
-  margin-top: calc(50% - (109px + 159px + 79.5px));
+  position: absolute;
+  top: calc(50% - (124px/2));
 }
 
 .saystem_setting__contents-wrapper .saystem_setting__btns p {
   margin: 0;
   text-align: center;
-  font-size: 50px;
+  font-size: 4rem;
   font-weight: 700;
+  color: black;
+}
+
+.saystem_setting__contents-wrapper .saystem_setting__btns a:hover {
+  text-decoration: none;
 }
 
 .saystem_setting__contents-wrapper .saystem_setting__btns .saystem_setting__company-setting-btn {
   background-color: white;
   width: 30%;
-  padding: 30px 0;
-  border-radius: 10px;
+  padding: 3rem 0;
+  border-radius: 1rem;
+}
+
+.saystem_setting__contents-wrapper .saystem_setting__btns .ssaystem_setting__btns a:hover {
+  color: #C02425;
 }
 
 .saystem_setting__contents-wrapper .saystem_setting__btns .saystem_setting__employee-setting-btn {
   background-color: white;
   width: 30%;
-  padding: 30px 0;
-  border-radius: 10px;
+  padding: 3rem 0;
+  border-radius: 1rem;
 }
 
-.return {
+.saystem_setting__contents-wrapper .saystem_setting__system-btn_wrapper {
+  padding: 0 2rem;
+  right: 0;
+  text-align: center;
+  background: #C02425;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, right top, left top, from(#F0CB35), to(#C02425));
+  background: linear-gradient(to left, #F0CB35, #C02425);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
+  bottom: 0;
+}
+
+.saystem_setting__contents-wrapper .saystem_setting__system-btn_wrapper a {
+  color: black;
+}
+
+.saystem_setting__contents-wrapper .saystem_setting__system-btn_wrapper a:hover {
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 .saystem_setting__company_setting__contents_wrapper_wrapper {
   background-color: white;
-  width: 100vw;
-  height: 100vh;
 }
 
 .saystem_setting__company_setting__contents_wrapper_wrapper .saystem_setting__company_setting__contents_wrapper {
-  max-width: 1280px;
-  min-width: 960px;
+  min-width: 1000px;
   margin: 0 auto;
   padding: 50px 0;
   color: #26484D;
@@ -178,10 +210,6 @@
 }
 
 .saystem_setting__company_setting__contents_wrapper_wrapper .saystem_setting__company_setting__contents_wrapper .saystem_setting__company_setting__shift_pattern__inputs {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
   padding: 0 10px;
 }
 
