@@ -1,0 +1,121 @@
+        // もし2月だったら、毎日須川
+
+        $designations = Date::where('month',$carbon_month)->get();//モデル名を使う//条件設定２の人（のちのち複数条件となる）
+        $designation = [];
+        foreach ($designations as $designation => $index) {
+            $month[]= [$index->month];
+        }
+
+        if ($month=2) {
+			return redirect('/stamp')->with('flash_message', '出勤済みなので登録できません！');
+		}
+        dd($this_months);
+        return view('test_view');
+
+
+
+
+
+
+
+                //課題２・・・カレンダー配列をforeachで回して一日ごとに、その日働ける人は誰かを検索する
+
+        //課題３・・・[日付・働けるひと]の配列でshiftsテーブルに保存
+        //ロジック１＊＊＊今日は何月なの？
+        $carbon = Carbon::now();
+        $this_month = $carbon->month;//今、2月
+        //ロジック２＊＊＊２月に働ける人はだれなの＝app_usersテーブルのdesignationカラムに２がある人は誰なの
+        $designation_searchs = App_user::where('designation',$this_month)->get();
+        foreach ($designation_searchs as $designation_search => $index) {
+            $name[]= [$index->name];//須川だよ！
+
+
+
+
+
+
+
+
+
+
+        $author_name = Youbi::find(1)->app_users;
+        dd($author_name);
+
+
+
+
+
+
+
+        //課題１・・・当月のカレンダー配列を作る
+        $carbon = Carbon::now();
+        $carbon_year = $carbon->year; //今年
+        $carbon_month = $carbon->month; //今月
+        $carbon_month2 = $carbon->month.'月'; //今月
+     
+        $carbon_day = $carbon->day;//今日
+        $carbon_today = Carbon::today();//今日は何年何月何日
+        $carbon_several_days = $carbon->daysInMonth;//今月の日数
+        //当月分のカレンダー配列がなければ作る、あれば作らせない
+        $one_day = Date::where('mdw', 'LIKE', "%$carbon_month2%")->exists();
+        if ($one_day) {
+        
+        }
+        else
+        {
+            $days = [];
+            for ($i=1; $i <= $carbon_several_days; $i++) {
+                
+                $carbon_date = Carbon::parse("$carbon_year-$carbon_month-$i");
+                // 以下で日本語ロケールをセットしています。
+                setlocale(LC_ALL, 'ja_JP.UTF-8');
+                // 以下の記述で「2019/01/01（火）」のように曜日入りで表示できるようになります。
+                $dayOfWeek =  $carbon_date->formatLocalized('%m月%d日(%a)');
+                
+                $days[] = ['year' => $carbon_year, 'mdw' => $dayOfWeek];
+            }
+            Date::insert($days);
+        }
+        
+        //課題２・・・カレンダー配列をforeachで回して一日ごとに、その日働ける人は誰かを検索する
+        //今年の今月をforeachする→今年の今月の配列を検索する
+        $dates = Date::where('year', $carbon_year)->where('mdw', 'LIKE', "%$carbon_month2%")->get();
+        foreach ($dates as $date => $index) {
+            $mdw[]= [$index->mdw];
+        }
+        //月曜日働ける人を検索
+        $dates = Date::where('year', $carbon_year)->where('mdw', 'LIKE', "%(月）%")->get();
+        foreach ($dates as $date => $index) {
+            $mdw[]= [$index->mdw];
+        }
+        //火曜日働ける人を検索
+        $dates = Date::where('year', $carbon_year)->where('mdw', 'LIKE', "%(火）%")->get();
+        foreach ($dates as $date => $index) {
+            $mdw[]= [$index->mdw];
+        }
+        //水曜日働ける人を検索
+        $dates = Date::where('year', $carbon_year)->where('mdw', 'LIKE', "%(水）%")->get();
+        foreach ($dates as $date => $index) {
+            $mdw[]= [$index->mdw];
+        }
+        //木曜日働ける人を検索
+        $dates = Date::where('year', $carbon_year)->where('mdw', 'LIKE', "%(木）%")->get();
+        foreach ($dates as $date => $index) {
+            $mdw[]= [$index->mdw];
+        }
+        //金曜日働ける人を検索
+        $dates = Date::where('year', $carbon_year)->where('mdw', 'LIKE', "%(金）%")->get();
+        foreach ($dates as $date => $index) {
+            $mdw[]= [$index->mdw];
+        }
+        //土曜日働ける人を検索
+        $dates = Date::where('year', $carbon_year)->where('mdw', 'LIKE', "%(土）%")->get();
+        foreach ($dates as $date => $index) {
+            $mdw[]= [$index->mdw];
+        }
+        //日曜日働ける人を検索
+        $dates = Date::where('year', $carbon_year)->where('mdw', 'LIKE', "%(日）%")->get();
+        foreach ($dates as $date => $index) {
+            $mdw[]= [$index->mdw];
+        }
+        dd($dates);

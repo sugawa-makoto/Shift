@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompanySettingsTable extends Migration
+class CreateCompanySetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CreateCompanySettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('company_settings', function (Blueprint $table) {
+        Schema::create('company_sets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('company_name');
-            $table->string('work_name');
-            $table->string('work_detail');
-            $table->time('work_time1');
-            $table->time('work_time2');
-            $table->integer('umberofpeople');
-            $table->integer('oneday_maximum_continuous_shift');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ class CreateCompanySettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_settings');
+        Schema::dropIfExists('company_sets');
     }
 }
