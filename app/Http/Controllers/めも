@@ -38,6 +38,9 @@
 
 
 
+
+
+
         $author_name = Youbi::find(1)->app_users;
         dd($author_name);
 
@@ -119,3 +122,320 @@
             $mdw[]= [$index->mdw];
         }
         dd($dates);
+
+
+
+
+
+
+
+
+
+
+
+                //当月分のカレンダー配列がなければ作る、あれば作らせない
+        $one_day = Date::where('year', $carbon_year)->where('mdw',$carbon_firstday)->exists();
+            if ($one_day) {
+        
+        }
+        else
+        {
+            $date = [];
+            for ($i=1; $i <= $carbon_several_days; $i++) {
+                $carbon_date = Carbon::parse("$carbon_year-$carbon_month-$i");
+                // 以下で日本語ロケールをセットしています。
+                setlocale(LC_ALL, 'ja_JP.UTF-8');
+                // 以下の記述で「2019/01/01（火）」のように曜日入りで表示できるようになります。
+                $dayOfWeek =  $carbon_date->formatLocalized('%m月%d日(%a)');
+                $date[] = ['year' => $carbon_year, 'mdw' => $carbon_date];
+            }
+            Date::insert($date);
+        }
+        $shift = Shift::all();
+        //シフトのデータが一個もない
+        if ($shift->isEmpty()) {
+            $dates = Date::all();
+            foreach($dates as $date){
+                // その日が何曜日か判断
+                $mdw = $date->mdw; //配列の中の１日分を取り出した
+                $datetime = new DateTime($mdw);
+                $weekList = array("日", "月", "火", "水", "木", "金", "土");
+                $w = (int)$datetime->format('w');   //曜日の出力（数字で）
+                $youbi = $weekList[$w].'曜日';      //曜日の出力（日本語で）
+                //その曜日に紐づくtypesテーブルのidは？
+                $find_type_id= Type::where('youbi_id',$w)->pluck('id');
+                //6.13.20.27.34.41.48.55が出た
+                //その曜日に紐づくtypesテーブルのtimetable_idは？
+                $find_type_timetable_id= Type::where('youbi_id',$w)->pluck('timetable_id');
+
+                //$type_ids一つづつに紐付いている人を導く
+                foreach($find_type_id as $type_id) {
+                    //まず一回転目で６が出るのでそれに紐づく人はだれかな？
+                    $find_user_id= Users_types::where('type_id',$type_id)->pluck('user_id');
+                    //user_id8.2.4の人がtypesテーブルのid６に紐付いている
+                    //それって誰なの?
+                    foreach($find_user_id as $user_id) {
+                        //まず一回転目で8が出るのでそれに紐づく人はだれかな？
+                        $shift = new Shift;
+                        $shift->date_id = $date->id;
+                        $shift->user_id = $user_id;
+                        $shift->save();
+                        
+                    }
+                }
+            }
+        }
+        //shiftテーブルのdate_idの一番最後のレコードが何月か求めて、今月分でなかったらシフトを追加作成
+        
+        elseif(){
+            //シフトのデータは有るけど今月のデータは無い
+
+        }
+        else{
+            return view('test');
+        }
+    }
+
+    $find_most_new_shift$dates = Date::all();
+            foreach($dates as $date){
+                // その日が何曜日か判断
+                $mdw = $date->mdw; //配列の中の１日分を取り出した
+                $datetime = new DateTime($mdw);
+                $weekList = array("日", "月", "火", "水", "木", "金", "土");
+                $w = (int)$datetime->format('w');   //曜日の出力（数字で）
+                $youbi = $weekList[$w].'曜日';      //曜日の出力（日本語で）
+                //その曜日に紐づくtypesテーブルのidは？
+                $find_type_id= Type::where('youbi_id',$w)->pluck('id');
+                //6.13.20.27.34.41.48.55が出た
+                //その曜日に紐づくtypesテーブルのtimetable_idは？
+                $find_type_timetable_id= Type::where('youbi_id',$w)->pluck('timetable_id');
+
+                //$type_ids一つづつに紐付いている人を導く
+                foreach($find_type_id as $type_id) {
+                    //まず一回転目で６が出るのでそれに紐づく人はだれかな？
+                    $find_user_id= Users_types::where('type_id',$type_id)->pluck('user_id');
+                    //user_id8.2.4の人がtypesテーブルのid６に紐付いている
+                    //それって誰なの?
+                    foreach($find_user_id as $user_id) {
+                        //まず一回転目で8が出るのでそれに紐づく人はだれかな？
+                        $shift = new Shift;
+                        $shift->date_id = $date->id;
+                        $shift->user_id = $user_id;
+                        $shift->save();
+                        
+                    }
+                }$shift->isEmpty()$shift = new Shift;            $dates = Date::all();
+            foreach($dates as $date){
+                // その日が何曜日か判断
+                $mdw = $date->mdw; //配列の中の１日分を取り出した
+                $datetime = new DateTime($mdw);
+                $weekList = array("日", "月", "火", "水", "木", "金", "土");
+                $w = (int)$datetime->format('w');   //曜日の出力（数字で）
+                $youbi = $weekList[$w].'曜日';      //曜日の出力（日本語で）
+                //その曜日に紐づくtypesテーブルのidは？
+                $find_type_id= Type::where('youbi_id',$w)->pluck('id');
+                //6.13.20.27.34.41.48.55が出た
+                //その曜日に紐づくtypesテーブルのtimetable_idは？
+                $find_type_timetable_id= Type::where('youbi_id',$w)->pluck('timetable_id');
+
+                //$type_ids一つづつに紐付いている人を導く
+                foreach($find_type_id as $type_id) {
+                    //まず一回転目で６が出るのでそれに紐づく人はだれかな？
+                    $find_user_id= Users_types::where('type_id',$type_id)->pluck('user_id');
+                    //user_id8.2.4の人がtypesテーブルのid６に紐付いている
+                    //それって誰なの?
+                    foreach($find_user_id as $user_id) {
+                        //まず一回転目で8が出るのでそれに紐づく人はだれかな？
+                        $shift = new Shift;
+                        $shift->date_id = $date->id;
+                        $shift->user_id = $user_id;
+                        $shift->save();
+                    }
+                }
+            }
+
+
+            $dates = Date::all();$shift」
+            judgment_now_month// shiftsテーブルのidカラムを昇順に並び替え→そのうちの一番最初を取得。つまり最新
+
+
+
+
+
+        //当月分のshiftが既にあれば作らせない
+        $find_most_new_shift= Shift::orderBy('id','desc')->first('created_at');// shiftsテーブルのidカラムを昇順に並び替え→そのうちの一番最初を取得。つまり最新
+        $dt = new Carbon($find_most_new_shift->created_at);//2020-02-24 15:53:26 を
+        $dt_change = $dt->toDateString();//2020-02-24　に変換
+       
+
+        
+        $judgment_now_month = new Carbon($dt_change);
+        if($judgment_now_month->isCurrentMonth()) {
+
+
+
+                    //今月のシフトのデータはあるかな？あったら作らない、月替りしてなかったら作る
+        //シフトのdate_idカラムの一番最後の具体的な日付を導く
+        //当月分のshiftが既にあれば作らせない
+        // shiftsテーブルのidカラムを昇順に並び替え→そのうちの一番最初を取得。つまり最新
+        $find_most_new_shift= Shift::orderBy('id','desc')->first('date_id');
+        dd($find_most_new_shift);
+        $find_most_new_shift_date_id = $find_most_new_shift->date_id;
+        //"9836"がでた
+        //この9836は具体的に何日なの？
+        $find_date_id= Date::where('id',$find_most_new_shift_date_id)->first();
+        $find_date_id_mdw = $find_date_id->mdw;
+        //"2020-02-29 00:00:00"がでた
+        //以下で変換に入る
+        $dt = new Carbon($find_date_id_mdw);//2020-02-29 00:00:00を
+        $dt_change = $dt->toDateString();//2020-02-29　に変換
+        //今月かどうか判断
+        $judgment_now_month = new Carbon($dt_change);
+        //もし今月だったらどうこうする
+        //ココではもし今月だったらシフトは作らせない
+        if($judgment_now_month->isCurrentMonth()) {
+
+
+
+
+
+
+
+
+                    // //今月のシフトのデータはあるかな？あったら作らない、月替りしてなかったら作る
+        // // shiftsテーブルのidカラムを昇順に並び替え→そのうちの一番最初を取得。つまり最新
+        // $find_most_new_shift= Shift::orderBy('id','desc')->first('date_id')->date_id;
+        // //32がでた
+        // //そのdate_idのmonthは何月か調べる
+        // $find_date_month= Date::where('id',$find_most_new_shift)->first('month')->month;
+        // //今月か判断する
+        // //今月かどうか判断
+        // //もし今月だったらどうこうする
+        // //ココではもし今月だったらシフトは作らせない
+        // if($find_date_month=$carbon_month) {
+        //     return view('make_draft_shift');
+            
+        // }else{
+        //     //今月じゃなかったらシフトを作らせる
+        //     $dates_now_month = Date::where('year', $carbon_year)->where('month',$carbon_month)->get();
+        //     foreach($dates_now_month as $date){
+        //         // その日が何曜日か判断
+        //         $mdw = $date->mdw; //配列の中の１日分を取り出した
+        //         $datetime = new DateTime($mdw);
+        //         $w = (int)$datetime->format('w');   //曜日の出力（数字で）
+        //         //その曜日に紐づくtypesテーブルのidは？
+        //         $find_type_ids= Type::where('youbi_id',$w)->pluck('id');
+        //         //6.13.20.27.34.41.48.55が出た
+        //         //その曜日に紐づくtypesテーブルのtimetable_idは？
+        //         $find_type_timetable_id= Type::where('youbi_id',$w)->pluck('timetable_id');
+        //         //$type_ids一つづつに紐付いている人を導く
+        //         foreach($find_type_ids as $type_id) {
+        //             //まず一回転目で６が出るのでそれに紐づく人はだれかな？
+        //             $find_user_id= Users_types::where('type_id',$type_id)->pluck('user_id');
+        //             //user_id8.2.4の人がtypesテーブルのid６に紐付いている
+        //             //それって誰なの?
+        //             foreach($find_user_id as $user_id) {
+        //                 //まず一回転目で8が出るのでそれに紐づく人はだれかな？
+        //                 $shift = new Shift;
+        //                 $shift->date_id = $date->id;
+        //                 $shift->user_id = $user_id;
+        //                 $shift->save();
+        //             }
+        //         }
+        //     }
+        // }return view('make_draft_shift');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use App\Models\Date;
+use App\Models\App_user;
+use App\Models\Shift;
+use App\Models\Type;
+use App\Models\Users_types;
+use App\Models\Youbi_number;
+use App\User;
+use DateTime;
+use DB;
+
+use Illuminate\Http\Request;
+class ShiftController extends Controller
+{
+
+    public function make_draft_shift(){
+        $carbon = Carbon::now();
+        $now_year = $carbon->year; //今年
+        $now_month = $carbon->month; //今月
+        $next_month =  $now_month+1;// 来月
+        //さあ次のシフトつーくろ！！ポチ！
+        //既に次のシフトがあったら作らないようにしたい！
+        //今年の来月が有るかどうか判断
+        //↓判断基準とする（今年の来月のdatesテーブルのid）
+        $bases_date_ids = Date::where('year', $now_year)->where('month', $next_month)->pluck('id');
+        //↓比較対象
+        $shift_date_ids = Shift::pluck('date_id');
+        //↓後ほど判断で使う変数を用意しているだけ
+        $shift_exists = false;
+        foreach($bases_date_ids as $bases_date_id) {
+            //$shift_date_idsと$bases_date_idsを突き合わせて一つでも一致するものは有るか？
+            if($shift_date_ids->contains($bases_date_id)) {
+                //一つでも一致するものが有るようなら$shift_exists = false;をtrueにしてif文を抜ける
+                $shift_exists = true;
+                break;
+            }
+        }
+        //もし$shift_exists = true;ならシフトは作る必要が無いのでreturn viewする
+        if($shift_exists){
+            return view('make_draft_shift');
+        }
+        //上記の条件をすり抜けて来たらシフトが必要だから作る
+        //ココからシフト作成開始
+        //12月のとき困るから条件を足しておく
+        if($now_month == 12) {
+            $now_year = $now_year + 1;
+            $next_month = 1;
+        }
+        $dates_now_month = Date::where('year', $now_year)->where('month',$next_month)->get();
+        foreach($dates_now_month as $date){
+            // その日が何曜日か判断
+            $mdw = $date->mdw; //配列の中の１日分を取り出した
+            $datetime = new DateTime($mdw);
+            $w = (int)$datetime->format('w');   //曜日の出力（数字で）
+            $ww = $w+1;//youbi_idは１から始まるので補正
+            //その曜日に紐づくtypesテーブルのidは？
+            $find_type_ids= Type::where('youbi_id',$ww)->pluck('id');
+            //1.8.15.22.29.36.43.50が出た
+            //$type_ids一つづつに紐付いている人を導く
+            foreach($find_type_ids as $type_id) {
+                //まず一回転目で1が出るのでそれに紐づく人はだれかな？
+                $find_user_id= Users_types::where('type_id',$type_id)->pluck('user_id');
+                //user_id1.3.5の人がtypesテーブルのid1に紐付いている
+                //それって誰なの?
+                foreach($find_user_id as $user_id) {
+                    //まず一回転目で8が出るのでそれに紐づく人はだれかな？
+                    $shift = new Shift;
+                    $shift->date_id = $date->id;
+                    $shift->user_id = $user_id;
+                    $shift->save();
+                }
+            }
+        }return view('make_draft_shift');
+    }
+}

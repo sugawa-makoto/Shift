@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDatesTable extends Migration
+class CreateTimetablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateDatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('dates', function (Blueprint $table) {
+        Schema::create('timetables', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('year');
-            $table->string('mdw');
+            $table->string('name');
+            $table->time('start');
+            $table->time('end');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateDatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dates');
+        Schema::dropIfExists('timetables');
     }
 }

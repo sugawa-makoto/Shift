@@ -8,8 +8,8 @@
 <div class="saystem_setting__contents-wrapper">
     <div class="saystem_setting__btns">
         <div class="saystem_setting__company-setting-btn">
-            <a href="test_start">
-                <p>テスト開始</p>
+            <a href="make_draft_shift">
+                <p>次月のシフトを作る</p>
             </a>
         </div>
     </div>

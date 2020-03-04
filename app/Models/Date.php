@@ -27,4 +27,6 @@ class Date extends Model
     // そして最後に、変数$dataに入ってきたデータをreturnして返しています。
 
     // これでモデルの作成は完了です。
+
+
 }

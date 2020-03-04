@@ -10,8 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/test', 'AdminController@test');
-Route::get('/test_start', 'AdminController@test_start');
+Route::get('/search_draft_shift', 'ShiftController@search_draft_shift');
+Route::get('/make_draft_shift', 'ShiftController@make_draft_shift');
 Route::get('/company_setting', 'AdminController@company_setting');
 Route::get('/employee_setting', 'AdminController@employee_setting');
 Route::post('/employee_setting', 'AdminController@employee_setting_send');

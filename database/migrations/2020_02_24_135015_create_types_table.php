@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHolidayHopesTable extends Migration
+class CreateTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateHolidayHopesTable extends Migration
      */
     public function up()
     {
-        Schema::create('holiday_hopes', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('employee_set_id');
-            $table->string('date');
+            $table->integer('work_id');
+            $table->integer('timetable_id');
+            $table->integer('youbi_id');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateHolidayHopesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('holiday_hopes');
+        Schema::dropIfExists('types');
     }
 }
